@@ -31,6 +31,9 @@ class _HomePageState extends State<HomePage> {
   //Switch
   bool interrupteur = false;
 
+  //Slider
+  double taille = 0.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,6 +125,23 @@ class _HomePageState extends State<HomePage> {
                   }
               ),
               Text((interrupteur) ? "Pour" : "Contre"),
+              Divider(),
+              Slider(
+                  value: taille,
+                  min: 0,
+                  max: 300,
+                  divisions: 30,
+                  label: taille.toStringAsFixed(0),
+                  inactiveColor: Colors.black87,
+                  activeColor: Colors.pinkAccent,
+                  onChanged: (double d){
+                    setState(() {
+                      taille = d;
+                      print(int.tryParse(taille.toStringAsFixed(0)));
+                    });
+                  }
+              ),
+              Text("Valeur Slider = ${taille}")
 
             ],
           ),
