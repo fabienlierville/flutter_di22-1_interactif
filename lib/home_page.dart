@@ -24,6 +24,10 @@ class _HomePageState extends State<HomePage> {
       Bananes []
    */
 
+  //RadioBox
+  ChoixTransport choixTransport = ChoixTransport.Avion;
+  Icon iconTransport = Icon(Icons.airplanemode_active);
+
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +66,49 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: checkList(),
                 ),
-              )
+              ),
+              Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // o Text o Text o Text
+                  Radio(
+                      value: ChoixTransport.Avion,
+                      groupValue: choixTransport,
+                      onChanged: (ChoixTransport? value){
+                        setState(() {
+                          choixTransport = value!;
+                          iconTransport = Icon(Icons.airplanemode_active);
+                        });
+                      }
+                  ),
+                  Text("Avion"),
+                  Radio(
+                      value: ChoixTransport.Bateau,
+                      groupValue: choixTransport,
+                      onChanged: (ChoixTransport? value){
+                        setState(() {
+                          choixTransport = value!;
+                          iconTransport = Icon(Icons.directions_boat);
+                        });
+                      }
+                  ),
+                  Text("Bateau"),
+                  Radio(
+                      value: ChoixTransport.Voiture,
+                      groupValue: choixTransport,
+                      onChanged: (ChoixTransport? value){
+                        setState(() {
+                          choixTransport = value!;
+                          iconTransport = Icon(Icons.directions_car);
+                        });
+                      }
+                  ),
+                  Text("Voiture"),
+                ],
+              ),
+              iconTransport,
+
             ],
           ),
         ),
@@ -84,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                 });
               }
           ),
-          Text(produit),
+          Text(produit, style: TextStyle(decoration: (achete) ? TextDecoration.lineThrough : TextDecoration.none),),
         ],
       );
 
@@ -94,7 +140,12 @@ class _HomePageState extends State<HomePage> {
 
     return l;
   }
-
-
 }
 
+enum ChoixTransport {
+  Voiture,
+  Avion,
+  Bateau
+}
+// o Avion o Bateau o Voiture
+// Icon correspondant
