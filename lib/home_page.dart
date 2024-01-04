@@ -28,6 +28,8 @@ class _HomePageState extends State<HomePage> {
   ChoixTransport choixTransport = ChoixTransport.Avion;
   Icon iconTransport = Icon(Icons.airplanemode_active);
 
+  //Switch
+  bool interrupteur = false;
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +110,18 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               iconTransport,
+              Divider(),
+              Switch(
+                inactiveTrackColor: Colors.red,
+                  activeColor: Colors.green,
+                  value: interrupteur,
+                  onChanged: (bool b){
+                    setState(() {
+                      interrupteur = b;
+                    });
+                  }
+              ),
+              Text((interrupteur) ? "Pour" : "Contre"),
 
             ],
           ),
