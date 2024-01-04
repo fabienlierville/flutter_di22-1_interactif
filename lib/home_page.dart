@@ -39,123 +39,129 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Widgets Interactifs"),
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              children: [
-                TextField(
-                  obscureText: obscure,
-                  onChanged: (String? value){
-                    setState(() {
-                      textValue = value!;
-                    });
-                  },
-                  decoration: InputDecoration(
-                    labelText: "Entrez votre mail",
-                    hintText: "test@test.com",
-                    suffixIcon: IconButton(
-                      icon: Icon((obscure) ? Icons.visibility_off : Icons.visibility),
-                      onPressed: (){
-                        setState(() {
-                          obscure = !obscure;
-                        });
-                      },
-                    )
-                  ),
-                ),
-                Text(textValue),
-                Divider(),
-                Container(
-                  child: Column(
-                    children: checkList(),
-                  ),
-                ),
-                Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    // o Text o Text o Text
-                    Radio(
-                        value: ChoixTransport.Avion,
-                        groupValue: choixTransport,
-                        onChanged: (ChoixTransport? value){
-                          setState(() {
-                            choixTransport = value!;
-                            iconTransport = Icon(Icons.airplanemode_active);
-                          });
-                        }
-                    ),
-                    Text("Avion"),
-                    Radio(
-                        value: ChoixTransport.Bateau,
-                        groupValue: choixTransport,
-                        onChanged: (ChoixTransport? value){
-                          setState(() {
-                            choixTransport = value!;
-                            iconTransport = Icon(Icons.directions_boat);
-                          });
-                        }
-                    ),
-                    Text("Bateau"),
-                    Radio(
-                        value: ChoixTransport.Voiture,
-                        groupValue: choixTransport,
-                        onChanged: (ChoixTransport? value){
-                          setState(() {
-                            choixTransport = value!;
-                            iconTransport = Icon(Icons.directions_car);
-                          });
-                        }
-                    ),
-                    Text("Voiture"),
-                  ],
-                ),
-                iconTransport,
-                Divider(),
-                Switch(
-                  inactiveTrackColor: Colors.red,
-                    activeColor: Colors.green,
-                    value: interrupteur,
-                    onChanged: (bool b){
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Widgets Interactifs"),
+        ),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                children: [
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    obscureText: obscure,
+                    onChanged: (String? value){
                       setState(() {
-                        interrupteur = b;
+                        textValue = value!;
                       });
-                    }
-                ),
-                Text((interrupteur) ? "Pour" : "Contre"),
-                Divider(),
-                Slider(
-                    value: taille,
-                    min: 0,
-                    max: 300,
-                    divisions: 30,
-                    label: taille.toStringAsFixed(0),
-                    inactiveColor: Colors.black87,
-                    activeColor: Colors.pinkAccent,
-                    onChanged: (double d){
-                      setState(() {
-                        taille = d;
-                        print(int.tryParse(taille.toStringAsFixed(0)));
-                      });
-                    }
-                ),
-                Text("Valeur Slider = ${taille}"),
-                Divider(),
-                FilledButton(
-                    onPressed: (){
-                      selectionDate();
                     },
-                    child: Text("Choisir une date")
-                ),
-                Text((dateNaissance==null) ? "Pas de date" : "${dateNaissance!.day} / ${dateNaissance!.month} / ${dateNaissance!.year}")
-        
-              ],
+                    decoration: InputDecoration(
+                      labelText: "Entrez votre mail",
+                      hintText: "test@test.com",
+                      suffixIcon: IconButton(
+                        icon: Icon((obscure) ? Icons.visibility_off : Icons.visibility),
+                        onPressed: (){
+                          setState(() {
+                            obscure = !obscure;
+                          });
+                        },
+                      )
+                    ),
+                  ),
+                  Text(textValue),
+                  Divider(),
+                  Container(
+                    child: Column(
+                      children: checkList(),
+                    ),
+                  ),
+                  Divider(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      // o Text o Text o Text
+                      Radio(
+                          value: ChoixTransport.Avion,
+                          groupValue: choixTransport,
+                          onChanged: (ChoixTransport? value){
+                            setState(() {
+                              choixTransport = value!;
+                              iconTransport = Icon(Icons.airplanemode_active);
+                            });
+                          }
+                      ),
+                      Text("Avion"),
+                      Radio(
+                          value: ChoixTransport.Bateau,
+                          groupValue: choixTransport,
+                          onChanged: (ChoixTransport? value){
+                            setState(() {
+                              choixTransport = value!;
+                              iconTransport = Icon(Icons.directions_boat);
+                            });
+                          }
+                      ),
+                      Text("Bateau"),
+                      Radio(
+                          value: ChoixTransport.Voiture,
+                          groupValue: choixTransport,
+                          onChanged: (ChoixTransport? value){
+                            setState(() {
+                              choixTransport = value!;
+                              iconTransport = Icon(Icons.directions_car);
+                            });
+                          }
+                      ),
+                      Text("Voiture"),
+                    ],
+                  ),
+                  iconTransport,
+                  Divider(),
+                  Switch(
+                    inactiveTrackColor: Colors.red,
+                      activeColor: Colors.green,
+                      value: interrupteur,
+                      onChanged: (bool b){
+                        setState(() {
+                          interrupteur = b;
+                        });
+                      }
+                  ),
+                  Text((interrupteur) ? "Pour" : "Contre"),
+                  Divider(),
+                  Slider(
+                      value: taille,
+                      min: 0,
+                      max: 300,
+                      divisions: 30,
+                      label: taille.toStringAsFixed(0),
+                      inactiveColor: Colors.black87,
+                      activeColor: Colors.pinkAccent,
+                      onChanged: (double d){
+                        setState(() {
+                          taille = d;
+                          print(int.tryParse(taille.toStringAsFixed(0)));
+                        });
+                      }
+                  ),
+                  Text("Valeur Slider = ${taille}"),
+                  Divider(),
+                  FilledButton(
+                      onPressed: (){
+                        selectionDate();
+                      },
+                      child: Text("Choisir une date")
+                  ),
+                  Text((dateNaissance==null) ? "Pas de date" : "${dateNaissance!.day} / ${dateNaissance!.month} / ${dateNaissance!.year}")
+          
+                ],
+              ),
             ),
           ),
         ),
